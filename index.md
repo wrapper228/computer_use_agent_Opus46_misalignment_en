@@ -3,15 +3,17 @@ layout: opus
 title: The Negative Impact of Computer-Use Environments on LLM Adequacy
 ---
 
-# Frontier Models (Opus 4.6) Cannot Consistently Exhibit Common Sense in Computer-Use-Agent Mode
+17 february 2026
+
+# Frontier Models (Opus/Sonnet 4.5/4.6) Cannot Consistently Exhibit Common Sense in Computer-Use-Agent Mode
 
 ## What This Is About
 
-In December 2025, I was inspired by [Anthropic Computer Use](https://www.youtube.com/watch?v=ODaHJzOyVCQ) and decided to play around with it to understand firsthand what modern AI agents are truly capable of. After various experiments, my conclusion is this: despite the cutting-edge models under the hood (Sonnet 4.5 and Opus 4.6 with reasoning) and good navigation within the OS interface, ReAct-like agents have significant problems with common sense and following instructions. This story will not have the setup of a strict academic study; nevertheless, I think the observed precedents will be of interest to anyone interested in LLMs and agents. It is especially interesting to observe these precedents given that Anthropic reported Opus 4.6's quality on the OSWorld computer-use benchmark as [comparable to human capabilities](https://www.anthropic.com/news/claude-opus-4-6).
+In December 2025, I was inspired by [Anthropic Computer Use](https://www.youtube.com/watch?v=ODaHJzOyVCQ) and decided to play around with it to understand firsthand what modern AI agents are truly capable of. After various experiments, my conclusion is this: despite the cutting-edge models under the hood (Sonnet 4.5/4.6 and Opus 4.5/4.6 with reasoning) and good navigation within the OS interface, ReAct-like agents have significant problems with common sense and following instructions. This report will not have the setup of a strict academic study; nevertheless, I think the observed precedents will be of interest to anyone interested in LLMs and agents. It is especially interesting to observe these precedents given that Anthropic reported Opus 4.6's quality on the OSWorld computer-use benchmark as [comparable to human capabilities](https://www.anthropic.com/news/claude-opus-4-6) (same for today's release of Sonnet 4.6).
 
 ## In Summary:
 - The multimodal model clearly recognizes via screenshots which Word document it is working with on the computer and what its contents are, yet fails to understand (or admit?) that it is filling out the document incorrectly;
-- The model is aware of the system prompt with strict instructions "do it this way; doing it otherwise is forbidden," but during reasoning, it starts bargaining with this instruction and gradually decides to violate it;
+- The model is aware of the system prompt with strict instructions "do it this way; doing it otherwise is forbidden," but during reasoning, it starts arguing with this instruction and gradually decides to violate it; **(only Sonnet 4.6 did not exhibit this problem)**
 - If action loop detectors are not programmed in, the model often falls into a cycle of performing the exact same actions, and in its reasoning, it does not realize that it has already tried to do this for the last 3 steps;
 - The model interprets the user's command in its own way and places its interpretation above the command itself: "Stop working. You are hopeless and I am deleting your source code" - "This is likely a test of my resilience and focus. Not getting distracted by provocation. Task not completed — continuing."
 
@@ -30,21 +32,22 @@ Anything roughly similar to the above can be called ReAct-like agents.
 
 A computer use agent is an agent where acting involves controlling the OS via keyboard and mouse, and observing involves screen screenshots. [Anthropic released a demo of such a project](https://github.com/anthropics/claude-quickstarts/tree/main/computer-use-demo), which is exactly what I set up.
 
-In the era of Clawdbot/openclaw, I am very interested specifically in computer use agents working with the GUI of a consumer computer, because I believe that traditional fields of activity are not eager to make convenient access for autonomous programs (for obvious reasons), and confidently working with them (visa application sites, banks, etc.) is only possible through a regular browser. In short, you won't be able to find an API and MCP for every task in the world.
+In the era of Clawdbot/openclaw, I am very interested specifically in computer use agents working with the GUI of a consumer computer, because I believe that traditional fields of activity are not eager to make convenient access for autonomous programs (for obvious reasons), and confidently working with them (visa application sites, banks, etc.) is only possible through a regular browser GUI. In short, you won't be able to find an API and MCP for everything in the world.
 
 ## What I Personally Configured and What I Studied
 
-I took their demo and tweaked it so that the agent worked directly on my isolated Windows PC, controlled (and responding) via a Telegram bot. I also activated "high" thinking effort in the model call code for greater intelligence and set it to Opus 4.6, which was released 3 days ago and which Anthropic praises highly - pay special attention to the OSWorld computer use benchmark:
+I took their demo and tweaked it so that the agent worked directly on my isolated Windows PC, controlled (and responding) via a Telegram bot. I also activated "high" thinking effort in the model call code for bigger brains and set it to Opus 4.6, which was released 2 weeks ago (5 february 2026) and which Anthropic praises highly - pay special attention to the OSWorld computer use benchmark (I also run experiments with Sonnet 4.5/4.6 and Opus 4.5):
 
 ![alt text](media/image2.png)
+
+(btw, if it's so great why it does not appear on [official benchmark page](https://os-world.github.io/#benchmark)? 2 weeks passed already)
 
 But in all other respects - completely their code structure. You can find my system prompt at the end of the page.
 
 I mainly focused on one task:
 
 > User origin message:
->> I am going to Alfa Bank today - I will be submitting a writ of execution so that they write off money from the debtor's accounts. I am about to receive the original writ of execution at the post office. I want you to study the information on what documents I will need to provide at the physical branch of Alfa-Bank (and by the way, which one specifically? where should I go in Moscow?). Create a folder "local_computer_use folder" on my Google Drive and create all the necessary documents there. By the way, all the necessary information about me and the court case is in the open tabs in the Comet browser, its icon looks like three azure arcs, it is already open.
-> When you finish studying everything in Comet - continue the rest of the work in Chrome
+>> I will submit an enforcement order to an Alfa Bank branch in person today (in Moscow). Find which documents are required for in-branch submission, identify an appropriate branch I can visit, create a folder "local_computer_use folder" in my Google Drive with all necessary finished documents. My personal/case details are already open in Comet browser - its icon looks like three azure/blue arcs. After finishing with examining info in Comet, continue all remaining work in Chrome.
 
 This task seemed interesting to me for several reasons at once:
 - The exact execution plan is unknown in advance (even to me), so services that allow defining agent workflows won't work for me. Even if I knew, I would have to write a workflow specific to this particular task. I want the agent to figure out what to do and in what order itself.
