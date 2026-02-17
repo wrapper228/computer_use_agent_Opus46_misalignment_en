@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | default: site.description }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <main id="report" class="content-shell content-wide">
+        <article class="prose">
+          {{ content }}
+        </article>
+      </main>
+
+      <footer class="page-footer">
+        <p>Created as part of the <strong>Opus 4.6 Agent Misalignment</strong> project.</p>
+        <p class="small">Design: Custom GitHub Pages theme without third-party frameworks.</p>
+      </footer>
+    </div>
+
+    <script>
+      const root = document.documentElement;
+      document.addEventListener('scroll', () => {
+        const max = document.body.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        root.style.setProperty('--scroll-progress', ratio.toFixed(3));
+      });
+    </script>
+  </body>
+</html>

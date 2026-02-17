@@ -1,0 +1,20 @@
+title: Opus 4.6 Agent Misalignment
+description: Research on computer-use agent behavior on Sonnet 4.5 and Opus 4.6 models
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    inline_theme: monokai
+    line_numbers: false
+theme: null
+permalink: pretty
+collections:
+  posts:
+    output: true
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: opus
+plugins: []
