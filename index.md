@@ -30,9 +30,9 @@ Then - a loop:
 
 Anything roughly similar to the above can be called ReAct-like agents.
 
-A computer use agent is an agent where acting involves controlling the OS via keyboard and mouse, and observing involves screen screenshots. [Anthropic released a demo of such a project](https://github.com/anthropics/claude-quickstarts/tree/main/computer-use-demo), which is exactly what I set up.
+A computer use agent is an agent where acting involves controlling the OS via keyboard and mouse, and observing involves screenshots. [Anthropic released a demo of such a project](https://github.com/anthropics/claude-quickstarts/tree/main/computer-use-demo), which is exactly what I set up.
 
-In the era of Clawdbot/openclaw, I am very interested specifically in computer use agents working with the GUI of a consumer computer, because I believe that traditional fields of activity are not eager to make convenient access for autonomous programs (for obvious reasons), and confidently working with them (visa application sites, banks, etc.) is only possible through a regular browser GUI. In short, you won't be able to find an API and MCP for everything in the world.
+In the era of Clawdbot/openclaw, I am very interested specifically in computer use agents working with the GUI of a consumer computer, because I believe that traditional businesses are not eager to make convenient access for autonomous programs (for obvious reasons), and confidently working with them (visa application sites, banks, etc.) is only possible through a regular browser GUI. In short, you won't be able to find an API and MCP for everything in the world.
 
 ## What I Personally Configured and What I Studied
 
