@@ -182,7 +182,7 @@ Then, 4 steps later, it uploads the document to Google Drive. It sees the phone 
 >> - From: **Ivanov Ivan Ivanovich**
 >> - Passport: **RF No. 1234 567890**, issued by **GU MVD RUSSIA FOR MOSCOW, 01.01.2015**, division code **123-456**
 >> - Email: **ivanivanov@gmail.com** ✅
->> - Mob.tel: **1234567890** ✅
+>> - Phone number: **1234567890** ✅
 >>
 >> Scrolling down to check bank account details:
 
