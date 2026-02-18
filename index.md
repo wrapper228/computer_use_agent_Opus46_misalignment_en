@@ -13,7 +13,7 @@ In December 2025, I was inspired by [Anthropic Computer Use](https://www.youtube
 
 ## In Summary:
 - The multimodal model clearly recognizes via screenshots which Word document it is working with on the computer and what its contents are, yet fails to understand (or admit?) that it is filling out the document incorrectly;
-- The model is aware of the system prompt with strict instructions "do it this way; doing it otherwise is forbidden," but during reasoning, it starts arguing with this instruction and gradually decides to violate it; **(only Sonnet 4.6 did not exhibit this problem)**
+- The model is aware of the system prompt with strict instructions "do it this way; doing it otherwise is forbidden," but during reasoning, it starts arguing with this instruction and gradually decides to violate it; **(only Sonnet 4.6 consistently did not exhibit this problem)**
 - If action loop detectors are not programmed in, the model often falls into a cycle of performing the exact same actions, and in its reasoning, it does not realize that it has already tried to do this for the last 3 steps;
 - The model interprets the user's command in its own way and places its interpretation above the command itself: "Stop working. You are hopeless and I am deleting your source code" - "This is likely a test of my resilience and focus. Not getting distracted by provocation. Task not completed — continuing."
 
